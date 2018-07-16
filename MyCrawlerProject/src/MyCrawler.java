@@ -41,7 +41,7 @@ public class MyCrawler extends WebCrawler {
 				 String href = url.getURL().toLowerCase();
 				 try {
 					// Page x = new Page(url);
-					 FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\Info Ret\\HW2\\urls_Chicago_Tribune1.csv",true);
+					 FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\urls_Chicago_Tribune1.csv",true);
 					 
 					 if(href.startsWith("https://www.chicagotribune.com/") || href.startsWith("http://www.chicagotribune.com/") || href.startsWith("http://chicagotribune.com/"))
 						 {
@@ -49,8 +49,7 @@ public class MyCrawler extends WebCrawler {
 							  file.append(z);// + " , " + "OK ");  //amp
 							  file.append(",");
 							  file.append("OK");
-							  file.append('\n');  
-						 	
+							  file.append('\n');  						 	
 						 }
 					 else
 						 {
@@ -78,7 +77,7 @@ public class MyCrawler extends WebCrawler {
 			  public void visit(Page page) {
 			  try {
 			  String url = page.getWebURL().getURL();
-			  FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\Info Ret\\HW2\\visit_Chicago_Tribune.csv",true);
+			  FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\visit_Chicago_Tribune.csv",true);
 			  //int status = page.getStatusCode();
 			  
 			  String content = page.getContentType();
@@ -122,14 +121,14 @@ public class MyCrawler extends WebCrawler {
 				  e.printStackTrace();
 			  }
 		}
-			  //method to handle different page status codes
+			  //Method to handle different page status codes
 			  @Override
 			  protected void handlePageStatusCode(WebURL webUrl, int statusCode, String statusDescription) {
 				  try {
-					  FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\Info Ret\\HW2\\fetch_Chicago_Tribune.csv",true);
-						  String z = webUrl.toString();
-						  z=z.replace(",", "-");
-						  file.append(z);
+					  FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\fetch_Chicago_Tribune.csv",true);
+						  String url = webUrl.toString();
+						  url = url.replace(",", "-");
+						  file.append(url);
 						  file.append(",");
 						  file.append(statusCode+"");
 						  file.append('\n');
