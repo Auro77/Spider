@@ -20,12 +20,14 @@ import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.parser.NotAllowedContentException;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.url.WebURL;
+/**
+ * Created by Aurobind on 2/18/18.
+ */
 
 public class MyCrawler extends WebCrawler {
 	
 	 private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|mp3|mp3|zip|gz|xml|json|ppt|mp4|wav|avi|mov|mpeg|mpg|m4v|swf|rar|wmv|wma|3gp|rm|mpa|vob|xls|xlsx|xlr))$");
 	// private static final Pattern imgPatterns = Pattern.compile(".*(\\.(html|pdf|bmp|gif|jpe?g|png))$");
-
 			 /**
 			 * This method receives two parameters. The first parameter is the page
 			 * in which we have discovered this new url and the second parameter is
@@ -72,7 +74,6 @@ public class MyCrawler extends WebCrawler {
 			  * This function is called when a page is fetched and ready
 			  * to be processed by your program.
 			  */
-			 //Page comes under Crawler folder
 			  @Override
 			  public void visit(Page page) {
 			  try {
@@ -121,11 +122,9 @@ public class MyCrawler extends WebCrawler {
 				  e.printStackTrace();
 			  }
 		}
-			  
+			  //method to handle different page status codes
 			  @Override
 			  protected void handlePageStatusCode(WebURL webUrl, int statusCode, String statusDescription) {
-			        // Do nothing by default
-			        // Sub-classed can override this to add their custom functionality
 				  try {
 					  FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\Info Ret\\HW2\\fetch_Chicago_Tribune.csv",true);
 						  String z = webUrl.toString();
