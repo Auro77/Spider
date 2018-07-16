@@ -1,0 +1,32 @@
+Fetch Statistics:
+=================
+# fetches attempted: 20000
+# fetches succeeded: 19563
+# fetches aborted or failed: 437
+
+Outgoing URLs:
+==============
+Total URLs extracted: 1259772
+# unique URLs extracted: 142592
+# unique URLs within News Site: 127898
+# unique URLs outside News Site: 14694
+
+Status Codes:
+=============
+200 OK: 19563
+301 Moved Permanently: 422
+302 Found (Moved Temporarily): 1
+404 Not Found: 11
+503 Service Unavailable: 3
+
+File Sizes:
+===========
+< 1KB: 0
+1KB ~ <10KB: 0
+10KB ~ <100KB: 1769
+100KB ~ <1MB: 17794
+>= 1MB: 0
+
+Content Types:
+==============
+text/html: 19563
