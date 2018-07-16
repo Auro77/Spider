@@ -36,105 +36,107 @@ public class MyCrawler extends WebCrawler {
 			 * In this case, we didn't need the
 			 * referringPage parameter to make the decision.
 			 */
-			 @Override
-			 public boolean shouldVisit(Page referringPage, WebURL url) {
-				 String href = url.getURL().toLowerCase();
-				 try {
-					// Page x = new Page(url);
-					 FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\urls_Chicago_Tribune1.csv",true);
+	 @Override
+	 public boolean shouldVisit(Page referringPage, WebURL url) {
+		 
+		 String href = url.getURL().toLowerCase();
+		 try {
+		// Page x = new Page(url);
+			 FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\urls_Chicago_Tribune1.csv",true);
 					 
-					 if(href.startsWith("https://www.chicagotribune.com/") || href.startsWith("http://www.chicagotribune.com/") || href.startsWith("http://chicagotribune.com/"))
-						 {
-							  String z = href.replace(",","-");
-							  file.append(z);// + " , " + "OK ");  //amp
-							  file.append(",");
-							  file.append("OK");
-							  file.append('\n');  						 	
-						 }
-					 else
-						 {
-							 String comma = href.replace(",","-");
-							 file.append(comma);
-							 file.append(",");
-							 file.append("N_OK");
-							 file.append('\n');
-						 }
+			 if(href.startsWith("https://www.chicagotribune.com/") || href.startsWith("http://www.chicagotribune.com/") || href.startsWith("http://chicagotribune.com/"))
+			 	{
+					String s = href.replace(",","-");
+					file.append(s); //amp
+					file.append(",");
+					file.append("OK");
+					file.append('\n');  						 	
+				}
+			 else
+				{
+					String isComma = href.replace(",","-");
+					file.append(isComma);
+					file.append(",");
+					file.append("N_OK");
+					file.append('\n');
+				 }
 				 
 				 file.flush();
-				 }
-				 catch(Exception e) {}
+			}
+			catch(Exception e) {}
 				 //if the url has extension as in filters then matcher will give true and the " ! " in frot of filters will give false
 				 //and vice versa
-				 return !FILTERS.matcher(href).matches()
+			return !FILTERS.matcher(href).matches()
 				 && (href.startsWith("https://www.chicagotribune.com/") || href.startsWith("http://www.chicagotribune.com/") || href.startsWith("http://chicagotribune.com/"));
-				 }
+		}
 			 
-			 /**
-			  * This function is called when a page is fetched and ready
-			  * to be processed by your program.
-			  */
-			  @Override
-			  public void visit(Page page) {
-			  try {
-			  String url = page.getWebURL().getURL();
-			  FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\visit_Chicago_Tribune.csv",true);
-			  //int status = page.getStatusCode();
+	 /**
+	  * This function is called when a page is fetched and ready
+	  * to be processed by your program.
+	  */
+	 @Override
+	 public void visit(Page page) {
+		 try {
+			  	String url = page.getWebURL().getURL();
+			  	FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\visit_Chicago_Tribune.csv",true);
+			  	//int status = page.getStatusCode();
 			  
-			  String content = page.getContentType();
-			  content = content.substring(0, content.indexOf(";"));
-			  Double num = (double) page.getContentData().length;
-			  Double deno = (double) 1024;
-			  Double ans = num/deno;
-			  String psize = Double.toString(ans)+" kb";
+			  	String content = page.getContentType();
+			  	content = content.substring(0, content.indexOf(";"));
+			  	Double num = (double) page.getContentData().length;
+			  	Double deno = (double) 1024;
+			  	Double ans = num/deno;
+			  	String psize = Double.toString(ans)+" kb";
 
 			  if (page.getParseData() instanceof HtmlParseData) {
-				  HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
-				  Set<WebURL> links = htmlParseData.getOutgoingUrls();
-				  String z = url.replace(",", "-");
-				  file.append(z);
-				  file.append(",");
-				  file.append(psize);
-				  file.append(",");
-				  file.append(links.size()+"");
-				  file.append(",");
-				  file.append(content);
-				  file.append('\n');
+				  	HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
+				  	Set<WebURL> links = htmlParseData.getOutgoingUrls();
+				  	String z = url.replace(",", "-");
+				  	file.append(z);
+				  	file.append(",");
+				  	file.append(psize);
+				  	file.append(",");
+				  	file.append(links.size()+"");
+				  	file.append(",");
+				  	file.append(content);
+				  	file.append('\n');
 			  }
 			  
 			  if(page.getParseData() instanceof BinaryParseData) {
-				  BinaryParseData binary = (BinaryParseData) page.getParseData();
-				  Set<WebURL> links = binary.getOutgoingUrls();
-				  String comma = url.replace(",", "-");
-				  file.append(comma);
-				  file.append(",");
-				  file.append(psize);
-				  file.append(",");
-				  file.append(links.size()+"");
-				  file.append(",");
-				  file.append(content);
-				  file.append('\n');
+				  	BinaryParseData binary = (BinaryParseData) page.getParseData();
+				  	Set<WebURL> links = binary.getOutgoingUrls();
+				  	String comma = url.replace(",", "-");
+				  	file.append(comma);
+				  	file.append(",");
+				  	file.append(psize);
+				  	file.append(",");
+				  	file.append(links.size()+"");
+				  	file.append(",");
+				  	file.append(content);
+				  	file.append('\n');
 			  }
 			 
 			  file.flush();
-			  }
-			  catch(Exception e) {
-				  e.printStackTrace();
-			  }
-		}
-			  //Method to handle different page status codes
-			  @Override
-			  protected void handlePageStatusCode(WebURL webUrl, int statusCode, String statusDescription) {
-				  try {
-					  FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\fetch_Chicago_Tribune.csv",true);
-						  String url = webUrl.toString();
-						  url = url.replace(",", "-");
-						  file.append(url);
-						  file.append(",");
-						  file.append(statusCode+"");
-						  file.append('\n');
+		 }
+		 catch(Exception e) {
+			 e.printStackTrace();
+			}
+	}
+	
+		//Method to handle different page status codes	
+		@Override
+		protected void handlePageStatusCode(WebURL webUrl, int statusCode, String statusDescription) {
+			try {
+					FileWriter file = new FileWriter("C:\\Users\\Auro\\Desktop\\fetch_Chicago_Tribune.csv",true);
+					String url = webUrl.toString();
+					url = url.replace(",", "-");
+					file.append(url);
+					file.append(",");
+					file.append(statusCode+"");
+					file.append('\n');
 					
-					  file.flush();
+					file.flush();
 				}
 				  catch(Exception e) {}
-			    }
+		}
 }
