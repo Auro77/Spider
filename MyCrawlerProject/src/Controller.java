@@ -3,6 +3,9 @@ import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
+/**
+ * Created by Aurobind on 2/18/18.
+ */
 
 public class Controller {
  public static void main(String[] args) throws Exception {
@@ -29,7 +32,6 @@ public class Controller {
  */
  robotstxtConfig.setEnabled(true);
  controller.addSeed("http://www.chicagotribune.com/");
-
 		 /*
 		  * Start the crawl. This is a blocking operation, meaning that your code
 		  * will reach the line after this only when crawling is finished.
