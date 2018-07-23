@@ -21,7 +21,7 @@ import edu.uci.ics.crawler4j.parser.NotAllowedContentException;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.url.WebURL;
 /**
- * Created by Aurobind on 2/18/18.
+ * @author Aurobind Iyer
  */
 
 public class MyCrawler extends WebCrawler {
